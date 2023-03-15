@@ -1,4 +1,4 @@
-# Laravel ActiveCampaign
+# Laravel ActiveCampaign test
 
 [![Latest Stable Version](https://poser.pugx.org/label84/laravel-active-campaign/v/stable?style=flat-square)](https://packagist.org/packages/label84/laravel-active-campaign)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
