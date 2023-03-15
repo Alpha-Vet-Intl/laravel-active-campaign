@@ -31,25 +31,25 @@ class ActiveCampaignFieldValuesResource extends ActiveCampaignBaseResource
      * Create a field value and get the id.
      *
      * @param  int  $contactId
-     * @param  string  $field
+     * @param  int  $fieldId
      * @param  string  $value
      * @return string
      *
      * @throws ActiveCampaignException
      */
-    public function create(int $contactId, string $field, string $value): string
+    public function create(int $contactId, int $fieldId, string $value): string
     {
         $fieldValue = $this->request(
             method: 'post',
             path: 'fieldValues',
             data: [
                 'fieldValue' => [
-                    'id' => $contactId,
-                    'field' => $field,
+                    'contact' => $contactId,
+                    'field' => $fieldId,
                     'value' => $value,
                 ],
             ],
-            responseKey: 'contact'
+            responseKey: 'fieldValue'
         );
 
         return $fieldValue['id'];
@@ -58,19 +58,20 @@ class ActiveCampaignFieldValuesResource extends ActiveCampaignBaseResource
     /**
      * Update an existing field value.
      *
-     * @param  ActiveCampaignFieldValue  $fieldValue
+     * @param int $id
+     * @param ActiveCampaignFieldValue $fieldValue
      * @return ActiveCampaignFieldValue
      *
      * @throws ActiveCampaignException
      */
-    public function update(ActiveCampaignFieldValue $fieldValue): ActiveCampaignFieldValue
+    public function update(int $id, ActiveCampaignFieldValue $fieldValue): ActiveCampaignFieldValue
     {
         $fieldValue = $this->request(
             method: 'put',
-            path: 'fieldValues/'.$fieldValue->contactId,
+            path: 'fieldValues/'.$id,
             data: [
                 'fieldValue' => [
-                    'id' => $fieldValue->contactId,
+                    'contact' => $fieldValue->contactId,
                     'field' => $fieldValue->field,
                     'value' => $fieldValue->value,
                 ],
